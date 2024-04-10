@@ -1,0 +1,12 @@
+rootProject.name = 'fatura_back_clean_arch'
+include 'core'
+include 'usecase'
+include 'application'
+include 'infrastructure'
+include 'core'
+include 'core'
+include 'core'
+include 'usecase'
+include 'application'
+include 'infrastructure'
+
