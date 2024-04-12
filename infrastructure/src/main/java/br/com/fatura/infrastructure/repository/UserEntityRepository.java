@@ -5,9 +5,12 @@ import br.com.fatura.infrastructure.entity.UserEntity;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface UserEntityRepository extends MongoRepository<UserEntity, String> {
 
     User findByEmail(String email);
+
+//    List<UserEntity> getAllUsers();
 }

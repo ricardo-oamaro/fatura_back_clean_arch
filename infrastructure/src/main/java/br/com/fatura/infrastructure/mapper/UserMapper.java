@@ -3,7 +3,11 @@ package br.com.fatura.infrastructure.mapper;
 import br.com.fatura.core.domain.User;
 import br.com.fatura.infrastructure.dto.request.CreateUserRequest;
 import br.com.fatura.infrastructure.entity.UserEntity;
+import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class UserMapper{
@@ -27,4 +31,5 @@ public class UserMapper{
                 request.role()
         );
     }
+
 }

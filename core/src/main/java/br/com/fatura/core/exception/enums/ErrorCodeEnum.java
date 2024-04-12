@@ -1,7 +1,8 @@
 package br.com.fatura.core.exception.enums;
 
 public enum ErrorCodeEnum {
-    ON0001("Houve um erro na criação do usuário", "ON-0001");
+    ON0001("Houve um erro na criação do usuário", "ON-0001"),
+    ON0002("Houve um erro retornar os usuários", "ON-0002");
 
     private String message;
     private String code;
