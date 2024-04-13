@@ -1,5 +1,6 @@
 package br.com.fatura.infrastructure.controller;
 
+import br.com.fatura.core.exception.AuthenticateException;
 import br.com.fatura.core.exception.InternalServerErrorException;
 import br.com.fatura.infrastructure.dto.request.AuthenticateUserRequest;
 import br.com.fatura.infrastructure.dto.request.CreateUserRequest;
@@ -10,6 +11,7 @@ import br.com.fatura.infrastructure.mapper.UserMapper;
 import br.com.fatura.infrastructure.repository.UserEntityRepository;
 import br.com.fatura.usecase.CreateUserUseCase;
 import br.com.fatura.usecase.GetAllUsersUseCase;
+import br.com.fatura.usecase.UserAuthenticateUseCase;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +34,12 @@ public class UserController {
     private GetAllUsersUseCase getAllUsersUseCase;
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private UserEntityMapper userEntityMapper;
-
     @Autowired
     private UserEntityRepository userEntityRepository;
+    @Autowired
+    private UserAuthenticateUseCase userAuthenticateUseCase;
 
 
     @PostMapping("/register")
@@ -49,16 +51,20 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AuthenticateUserRequest request) {
+    public ResponseEntity<String> login(@RequestBody AuthenticateUserRequest request) throws AuthenticateException {
         JSONObject jsonResponse = new JSONObject();
         log.info("Autenticando usuário::UserController");
         var user = userEntityRepository.findByEmail(request.email());
         String userId = user.getId();
         String name = user.getName();
+        String email = user.getEmail();
+        String password = user.getPassword();
+        String token = userAuthenticateUseCase.authenticate(email, password);
         return ResponseEntity.ok().body(
                 jsonResponse.put("message", "Login realizado com sucesso")
                         .put("userId", userId)
                         .put("name", name)
+                        .put("token", token)
                         .toString()
         );
     }

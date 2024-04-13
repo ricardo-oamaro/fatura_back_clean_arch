@@ -7,12 +7,18 @@ import br.com.fatura.usecase.UserAuthenticateUseCase;
 
 public class UserAuthenticateUseCaseImpl implements UserAuthenticateUseCase {
 
-    private UserAuthenticateGateway userAuthenticateGateway;
+    private final UserAuthenticateGateway userAuthenticateGateway;
+
+    public UserAuthenticateUseCaseImpl(UserAuthenticateGateway userAuthenticateGateway) {
+        this.userAuthenticateGateway = userAuthenticateGateway;
+    }
+
     @Override
-    public Boolean authenticate(String email, String password) throws AuthenticateException {
-        if (!userAuthenticateGateway.authenticate(email, password)) {
+    public String authenticate(String email, String password) throws AuthenticateException {
+        String result = userAuthenticateGateway.authenticate(email, password);
+        if (result.equals("User not found")) {
             throw new AuthenticateException(ErrorCodeEnum.AUTH0001.getMessage(), ErrorCodeEnum.AUTH0001.getCode());
         }
-        return true;
+        return result;
     }
 }

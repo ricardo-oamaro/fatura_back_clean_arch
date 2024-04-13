@@ -5,6 +5,7 @@ import br.com.fatura.core.domain.User;
 import br.com.fatura.infrastructure.entity.UserEntity;
 import br.com.fatura.infrastructure.mapper.UserEntityMapper;
 import br.com.fatura.infrastructure.repository.UserEntityRepository;
+import br.com.fatura.infrastructure.service.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,15 @@ public class UserAuthenticateGatewayImpl implements UserAuthenticateGateway {
     @Autowired
     private UserEntityMapper userEntityMapper;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @Override
-    public Boolean authenticate(String email, String password) {
+    public String authenticate(String email, String password) {
         User user = userEntityRepository.findByEmail(email);
-        if (user == null) {
-            return false;
+        if (user == null || !user.getPassword().equals(password)) {
+            return "User not found";
         }
-        return user.getPassword().equals(password);
+        return jwtUtil.generateToken(user);
     }
 }
