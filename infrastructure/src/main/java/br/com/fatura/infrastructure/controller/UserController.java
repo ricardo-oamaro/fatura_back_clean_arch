@@ -12,6 +12,7 @@ import br.com.fatura.infrastructure.repository.UserEntityRepository;
 import br.com.fatura.usecase.CreateUserUseCase;
 import br.com.fatura.usecase.GetAllUsersUseCase;
 import br.com.fatura.usecase.UserAuthenticateUseCase;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,9 @@ public class UserController {
     @Autowired
     private UserAuthenticateUseCase userAuthenticateUseCase;
 
-
+    @CrossOrigin
     @PostMapping("/register")
-    public BaseResponse<String> createUser(@RequestBody CreateUserRequest request) throws InternalServerErrorException {
+    public BaseResponse<String> createUser(@Valid @RequestBody CreateUserRequest request) throws InternalServerErrorException {
         log.info("Inicio da criação do usuário::UserController");
         createUserUseCase.create(userMapper.toUser(request));
         log.info("Usuário criado com sucesso::UserController");
@@ -51,7 +52,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody AuthenticateUserRequest request) throws AuthenticateException {
+    public ResponseEntity<String> login(@RequestBody @Valid AuthenticateUserRequest request) throws AuthenticateException {
         JSONObject jsonResponse = new JSONObject();
         log.info("Autenticando usuário::UserController");
         var user = userEntityRepository.findByEmail(request.email());

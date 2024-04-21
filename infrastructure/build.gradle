@@ -20,6 +20,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-tomcat'
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     implementation 'org.json:json:20210307'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
