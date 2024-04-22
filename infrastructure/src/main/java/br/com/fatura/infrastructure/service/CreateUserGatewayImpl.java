@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class CreateUserGatewayImpl implements CreateUserGateway {
 
-    private UserEntityRepository userEntityRepository;
-    private UserMapper userMapper;
+    private final UserEntityRepository userEntityRepository;
+    private final UserMapper userMapper;
 
     public CreateUserGatewayImpl(UserEntityRepository userEntityRepository, UserMapper userMapper) {
         this.userEntityRepository = userEntityRepository;

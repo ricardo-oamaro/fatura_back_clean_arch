@@ -2,10 +2,10 @@ package br.com.fatura.infrastructure.mapper;
 
 import br.com.fatura.core.domain.User;
 import br.com.fatura.infrastructure.dto.respose.UserResponse;
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import br.com.fatura.infrastructure.entity.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,5 +23,6 @@ public interface UserEntityMapper {
     }
 
     UserResponse toUserResponse(User user);
+
 
 }

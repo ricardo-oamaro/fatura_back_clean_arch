@@ -6,10 +6,9 @@ import br.com.fatura.application.gateway.UserAuthenticateGateway;
 import br.com.fatura.application.usecaseimpl.CreateUserUseCaseImpl;
 import br.com.fatura.application.usecaseimpl.GetAllUsersUseCaseImpl;
 import br.com.fatura.application.usecaseimpl.UserAuthenticateUseCaseImpl;
-import br.com.fatura.infrastructure.service.GetAllUsersGatewayImpl;
-import br.com.fatura.usecase.CreateUserUseCase;
-import br.com.fatura.usecase.GetAllUsersUseCase;
-import br.com.fatura.usecase.UserAuthenticateUseCase;
+import br.com.fatura.usecase.user.CreateUserUseCase;
+import br.com.fatura.usecase.user.GetAllUsersUseCase;
+import br.com.fatura.usecase.item.auth.UserAuthenticateUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -9,9 +9,9 @@ import br.com.fatura.infrastructure.dto.respose.UserResponse;
 import br.com.fatura.infrastructure.mapper.UserEntityMapper;
 import br.com.fatura.infrastructure.mapper.UserMapper;
 import br.com.fatura.infrastructure.repository.UserEntityRepository;
-import br.com.fatura.usecase.CreateUserUseCase;
-import br.com.fatura.usecase.GetAllUsersUseCase;
-import br.com.fatura.usecase.UserAuthenticateUseCase;
+import br.com.fatura.usecase.user.CreateUserUseCase;
+import br.com.fatura.usecase.user.GetAllUsersUseCase;
+import br.com.fatura.usecase.item.auth.UserAuthenticateUseCase;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
@@ -21,12 +21,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("auth")
 @Slf4j
+@CrossOrigin
 @Document(collection = "users")
 public class UserController {
     @Autowired
@@ -42,13 +42,13 @@ public class UserController {
     @Autowired
     private UserAuthenticateUseCase userAuthenticateUseCase;
 
-    @CrossOrigin
+
     @PostMapping("/register")
-    public BaseResponse<String> createUser(@Valid @RequestBody CreateUserRequest request) throws InternalServerErrorException {
+    public ResponseEntity<?> createUser(@RequestBody @Valid CreateUserRequest request) throws InternalServerErrorException {
         log.info("Inicio da criação do usuário::UserController");
         createUserUseCase.create(userMapper.toUser(request));
         log.info("Usuário criado com sucesso::UserController");
-        return BaseResponse.<String>builder().success(true).message("Usuário criado com sucesso").build();
+        return ResponseEntity.ok().body("Usuário criado com sucesso");
     }
 
     @PostMapping("/login")

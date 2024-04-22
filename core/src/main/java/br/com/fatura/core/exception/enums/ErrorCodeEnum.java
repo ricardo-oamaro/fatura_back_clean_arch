@@ -3,8 +3,8 @@ package br.com.fatura.core.exception.enums;
 public enum ErrorCodeEnum {
     ON0001("Houve um erro na criação do usuário", "ON-0001"),
     ON0002("Houve um erro retornar os usuários", "ON-0002"),
-
-    AUTH0001("Usuário ou senha inválidos", "AUTH-0001");
+    AUTH0001("Usuário ou senha inválidos", "AUTH-0001"),
+    ITM0001( "Houve um erro na criação do item", "ITM-0001");
 
     private String message;
     private String code;

@@ -3,7 +3,7 @@ package br.com.fatura.application.usecaseimpl;
 import br.com.fatura.application.gateway.UserAuthenticateGateway;
 import br.com.fatura.core.exception.AuthenticateException;
 import br.com.fatura.core.exception.enums.ErrorCodeEnum;
-import br.com.fatura.usecase.UserAuthenticateUseCase;
+import br.com.fatura.usecase.item.auth.UserAuthenticateUseCase;
 
 public class UserAuthenticateUseCaseImpl implements UserAuthenticateUseCase {
 

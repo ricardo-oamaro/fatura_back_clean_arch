@@ -4,7 +4,7 @@ import br.com.fatura.application.gateway.CreateUserGateway;
 import br.com.fatura.core.domain.User;
 import br.com.fatura.core.exception.InternalServerErrorException;
 import br.com.fatura.core.exception.enums.ErrorCodeEnum;
-import br.com.fatura.usecase.CreateUserUseCase;
+import br.com.fatura.usecase.user.CreateUserUseCase;
 
 public class CreateUserUseCaseImpl implements CreateUserUseCase {
 

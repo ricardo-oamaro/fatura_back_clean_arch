@@ -1,6 +1,7 @@
 package br.com.fatura.infrastructure.validation;
 
 import br.com.fatura.infrastructure.mapper.UserEntityMapper;
+import br.com.fatura.infrastructure.repository.UserEntityRepository;
 import br.com.fatura.infrastructure.repository.UserRepository;
 import br.com.fatura.infrastructure.service.util.Constrants;
 import br.com.fatura.infrastructure.service.util.JwtUtil;
@@ -66,6 +67,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             log.error(Constrants.LOGIN_ERROR);
             sendErrorResponse(response, Constrants.LOGIN_ERROR);
         }
+        filterChain.doFilter(request, response);
     }
     private String recoverToken(HttpServletRequest request) {
         var authHeader = request.getHeader("Authorization");
@@ -82,3 +84,4 @@ public class SecurityFilter extends OncePerRequestFilter {
         response.getWriter().write(jsonResponse.toString());
     }
 }
+

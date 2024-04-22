@@ -1,4 +1,4 @@
-package br.com.fatura.usecase;
+package br.com.fatura.usecase.user;
 
 import br.com.fatura.core.domain.User;
 import br.com.fatura.core.exception.InternalServerErrorException;

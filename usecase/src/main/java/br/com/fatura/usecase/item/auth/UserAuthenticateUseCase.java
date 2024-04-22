@@ -1,4 +1,4 @@
-package br.com.fatura.usecase;
+package br.com.fatura.usecase.item.auth;
 
 import br.com.fatura.core.exception.AuthenticateException;
 
