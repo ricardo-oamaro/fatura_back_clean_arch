@@ -1,4 +1,4 @@
-package br.com.fatura.infrastructure.service.util;
+package br.com.fatura.infrastructure.util;
 
 import br.com.fatura.core.domain.User;
 import com.auth0.jwt.JWT;

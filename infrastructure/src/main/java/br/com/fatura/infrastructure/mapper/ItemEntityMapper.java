@@ -13,4 +13,7 @@ public interface ItemEntityMapper {
 
     @Mapping(target = "id", ignore = true)
     Item toItem(CreateItemRequest request);
+
+    @Mapping(target = "id", ignore = true)
+    Item toItem(ItemEntity itemEntity);
 }

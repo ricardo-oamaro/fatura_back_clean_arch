@@ -1,4 +1,4 @@
-package br.com.fatura.infrastructure.service.util;
+package br.com.fatura.infrastructure.util;
 
 public class Constrants {
     public static final String USER_NOT_FOUND = "Usuário não encontrado";

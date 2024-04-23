@@ -2,10 +2,9 @@ package br.com.fatura.infrastructure.service;
 
 import br.com.fatura.application.gateway.UserAuthenticateGateway;
 import br.com.fatura.core.domain.User;
-import br.com.fatura.infrastructure.entity.UserEntity;
 import br.com.fatura.infrastructure.mapper.UserEntityMapper;
 import br.com.fatura.infrastructure.repository.UserEntityRepository;
-import br.com.fatura.infrastructure.service.util.JwtUtil;
+import br.com.fatura.infrastructure.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

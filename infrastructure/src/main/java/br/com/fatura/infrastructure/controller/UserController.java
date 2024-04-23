@@ -7,7 +7,7 @@ import br.com.fatura.infrastructure.dto.respose.UserResponse;
 import br.com.fatura.infrastructure.mapper.UserEntityMapper;
 import br.com.fatura.infrastructure.mapper.UserMapper;
 import br.com.fatura.infrastructure.repository.UserEntityRepository;
-import br.com.fatura.infrastructure.service.util.JwtUtil;
+import br.com.fatura.infrastructure.util.JwtUtil;
 import br.com.fatura.usecase.CreateUserUseCase;
 import br.com.fatura.usecase.GetAllUsersUseCase;
 import br.com.fatura.usecase.UserAuthenticateUseCase;
