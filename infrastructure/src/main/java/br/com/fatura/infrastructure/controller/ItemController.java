@@ -28,7 +28,7 @@ public class ItemController {
     private ItemEntityMapper itemEntityMapper;
 
     @PostMapping("/insert")
-    public BaseResponse<String> createItem(@RequestBody CreateItemRequest request) throws InternalServerErrorException {
+    public BaseResponse<String> createItem(@RequestBody @Valid CreateItemRequest request) throws InternalServerErrorException {
         log.info("Inicio da criação do item::ItemController");
         createItemUseCase.create(itemEntityMapper.toItem(request));
         log.info("Item criado com sucesso::ItemController");

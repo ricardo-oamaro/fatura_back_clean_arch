@@ -9,11 +9,13 @@ import br.com.fatura.infrastructure.dto.respose.UserResponse;
 import br.com.fatura.infrastructure.mapper.UserEntityMapper;
 import br.com.fatura.infrastructure.mapper.UserMapper;
 import br.com.fatura.infrastructure.repository.UserEntityRepository;
+import br.com.fatura.infrastructure.service.util.JwtUtil;
 import br.com.fatura.usecase.user.CreateUserUseCase;
 import br.com.fatura.usecase.user.GetAllUsersUseCase;
 import br.com.fatura.usecase.item.auth.UserAuthenticateUseCase;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,6 +39,8 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
     @Autowired
+    JwtUtil jwtUtil;
+    @Autowired
     private UserEntityMapper userEntityMapper;
     @Autowired
     private UserEntityRepository userEntityRepository;
@@ -44,7 +49,7 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> createUser(@RequestBody @Valid CreateUserRequest request) throws InternalServerErrorException {
+    public ResponseEntity<?> createUser(@Valid @RequestBody CreateUserRequest request) throws InternalServerErrorException {
         log.info("Inicio da criação do usuário::UserController");
         createUserUseCase.create(userMapper.toUser(request));
         log.info("Usuário criado com sucesso::UserController");
@@ -52,22 +57,27 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Valid AuthenticateUserRequest request) throws AuthenticateException {
+    public ResponseEntity<?> login(@RequestBody @Valid AuthenticateUserRequest request) throws JSONException {
         JSONObject jsonResponse = new JSONObject();
-        log.info("Autenticando usuário::UserController");
-        var user = userEntityRepository.findByEmail(request.email());
-        String userId = user.getId();
-        String name = user.getName();
-        String email = user.getEmail();
-        String password = user.getPassword();
-        String token = userAuthenticateUseCase.authenticate(email, password);
-        return ResponseEntity.ok().body(
-                jsonResponse.put("message", "Login realizado com sucesso")
-                        .put("userId", userId)
-                        .put("name", name)
-                        .put("token", token)
-                        .toString()
-        );
+        try {
+            log.info("Autenticando usuário::UserController");
+            var user = userEntityRepository.findByEmail(request.email());
+            String userId = user.getId();
+            String name = user.getName();
+            String token = jwtUtil.generateToken(user);
+            return ResponseEntity.ok().body(
+                    Map.of(
+                            "_id", userId,
+                            "name", name,
+                            "token", token
+                    )
+            );
+
+        } catch (Exception e) {
+            log.error("Erro ao autenticar usuário::UserController");
+            return ResponseEntity.badRequest().body("Erro ao autenticar usuário");
+        }
+
     }
 
     @GetMapping("/users")

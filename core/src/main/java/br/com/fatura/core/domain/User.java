@@ -1,7 +1,9 @@
 package br.com.fatura.core.domain;
 
 import br.com.fatura.core.domain.enums.UserRole;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.UUID;
 
 public class User {
@@ -88,5 +90,9 @@ public class User {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 }

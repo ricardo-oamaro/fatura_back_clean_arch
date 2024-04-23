@@ -1,5 +1,6 @@
 package br.com.fatura.infrastructure.validation;
 
+import br.com.fatura.core.domain.User;
 import br.com.fatura.infrastructure.mapper.UserEntityMapper;
 import br.com.fatura.infrastructure.repository.UserEntityRepository;
 import br.com.fatura.infrastructure.repository.UserRepository;
@@ -29,7 +30,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     JwtUtil jwtUtil;
 
     @Autowired
-    UserRepository userRepository;
+    UserEntityRepository userEntityRepository;
 
     @Autowired
     UserEntityMapper userEntityMapper;
@@ -46,7 +47,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             if (token != null) {
                 var email = jwtUtil.validateToken(token);
                 if (email != null && !email.isEmpty()) {
-                    UserDetails user = userRepository.findByEmail(email);
+                    User user = userEntityRepository.findByEmail(email);
                     if (user != null) {
                         var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                         SecurityContextHolder.getContext().setAuthentication(authentication);
