@@ -1,10 +1,10 @@
 package br.com.fatura.application.usecaseimpl;
 
 import br.com.fatura.application.gateway.CreateItemGateway;
-import br.com.fatura.core.domain.item.Item;
+import br.com.fatura.core.domain.Item;
 import br.com.fatura.core.exception.InternalServerErrorException;
 import br.com.fatura.core.exception.enums.ErrorCodeEnum;
-import br.com.fatura.usecase.item.CreateItemUseCase;
+import br.com.fatura.usecase.CreateItemUseCase;
 
 public class CreateItemUseCaseImpl implements CreateItemUseCase {
 

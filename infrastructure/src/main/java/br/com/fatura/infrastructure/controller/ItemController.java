@@ -5,7 +5,7 @@ import br.com.fatura.infrastructure.dto.request.CreateItemRequest;
 import br.com.fatura.infrastructure.dto.respose.BaseResponse;
 import br.com.fatura.infrastructure.mapper.ItemEntityMapper;
 import br.com.fatura.infrastructure.repository.ItemRepository;
-import br.com.fatura.usecase.item.CreateItemUseCase;
+import br.com.fatura.usecase.CreateItemUseCase;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

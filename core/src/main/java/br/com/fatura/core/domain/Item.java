@@ -1,4 +1,4 @@
-package br.com.fatura.core.domain.item;
+package br.com.fatura.core.domain;
 
 import java.util.Objects;
 

@@ -1,6 +1,6 @@
-package br.com.fatura.usecase.item;
+package br.com.fatura.usecase;
 
-import br.com.fatura.core.domain.item.Item;
+import br.com.fatura.core.domain.Item;
 import br.com.fatura.core.exception.InternalServerErrorException;
 
 public interface CreateItemUseCase {

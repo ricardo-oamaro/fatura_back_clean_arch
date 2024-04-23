@@ -1,7 +1,7 @@
 package br.com.fatura.infrastructure.service;
 
 import br.com.fatura.application.gateway.CreateItemGateway;
-import br.com.fatura.core.domain.item.Item;
+import br.com.fatura.core.domain.Item;
 import br.com.fatura.infrastructure.mapper.ItemEntityMapper;
 import br.com.fatura.infrastructure.repository.ItemRepository;
 import lombok.extern.slf4j.Slf4j;

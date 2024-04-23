@@ -2,7 +2,7 @@ package br.com.fatura.infrastructure.config;
 
 import br.com.fatura.application.gateway.CreateItemGateway;
 import br.com.fatura.application.usecaseimpl.CreateItemUseCaseImpl;
-import br.com.fatura.usecase.item.CreateItemUseCase;
+import br.com.fatura.usecase.CreateItemUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

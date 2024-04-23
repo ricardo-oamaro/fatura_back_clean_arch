@@ -4,7 +4,7 @@ import br.com.fatura.application.gateway.GetAllUsersGateway;
 import br.com.fatura.core.domain.User;
 import br.com.fatura.core.exception.InternalServerErrorException;
 import br.com.fatura.core.exception.enums.ErrorCodeEnum;
-import br.com.fatura.usecase.user.GetAllUsersUseCase;
+import br.com.fatura.usecase.GetAllUsersUseCase;
 
 import java.util.List;
 
